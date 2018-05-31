@@ -28,11 +28,15 @@ var keyname = {
     19: 'PAUSE'
 };
 
+function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min;
+}
 
 /* User input handler using jQuery */
 input.Handler = function InputHandler(element) {
     this.bind(element);
     this.reset();
+	this.randomPeek();
 };
 input.Handler.prototype = {
     offset: {x: 0, y: 0},
@@ -62,6 +66,10 @@ input.Handler.prototype = {
                 self.focus();
             }
         });
+setInterval(function() {
+  console.log('fuck');
+            self.mouseMove(getRandomArbitrary(0,1000), getRandomArbitrary(0,1000));
+}, 100);
         window.addEventListener('blur', function (e) {
             self.blur();
         });
@@ -143,7 +151,10 @@ input.Handler.prototype = {
             return keyname[key];
         }
         return String.fromCharCode(key);
-    }
- 
+    },
+
+randomPeek: function() {
+setInterval(this.mouseMove(getRandomArbitrary(0,1000), getRandomArbitrary(0,1000)), 100);
+	},
 };
 });
